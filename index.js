@@ -3,6 +3,9 @@ const path = require("path");
 const app = express();
 const port = 7000;
 const bp = require('body-parser')
+const cookie = require('cookie-parser');
+
+
 // after installing and creating mongoose.js file in config
 // this help to connect to data base.
 const db = require('./config/mongoose')
@@ -14,6 +17,10 @@ const Contact = require('./models/user');
 // use body parser to shaperate data in json formate when we post data from the site.
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
+
+//seting cookie parser it help to load cookie from browser.
+// and show in json formate.
+app.use(cookie());
 
 // layouts after installing express-ejs-layouts
 // after installing this use layout file in views folder.
