@@ -17,6 +17,9 @@ const MongoStore = require('connect-mongo');
 // after creating schema in models folder
 // this require to see data base in robo3t or mongocompass
 const Contact = require('./models/user');
+
+var cookies = require("cookie-parser");
+app.use(cookies());
 const sassMiddleware = require('node-sass-middleware');
 
 app.use(express.static(path.join(__dirname, 'assets')));
