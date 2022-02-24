@@ -1,5 +1,13 @@
 const user = require('../models/user');
+module.exports.profile = function(req,res){
+    return res.render('user_profile',{
+        title:"Profile Page"
+    })
+}
 module.exports.login = function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
     return res.render('login',{
         title:"Login",
         error:""
@@ -7,6 +15,9 @@ module.exports.login = function(req,res){
 }
 
 module.exports.signup =function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
     return res.render('signup',{
         title:"Signup"
     })
@@ -38,23 +49,16 @@ module.exports.create = function(req,res){
     // });
 }
 
+// auth or section
+//* sign in and create a section for the user.
 module.exports.auth = function(req,res){
-    console.log(req.body);
-    user.find({},function(err,item){
-        if(err){
-            console.log('error while faching data from the data base');
-            return;
-        }
-        for(var i=0;i<item.length;i++){
-            if(item[i].email===req.body.email){
-                if(item[i].password===req.body.password){
-                    return res.redirect('/')
-                }
-                
-                // return login();;
-                return res.end('password error')
-            }
-        }
-        return res.end('user not register please registe')
-    });
+    // comment of this function is also avilable in other branch in github (manual-local-auth)
+    return res.redirect('/');
+}
+
+
+// signout or destroy session
+module.exports.signout = function(req,res){
+    req.logout();
+    return res.redirect('/');
 }

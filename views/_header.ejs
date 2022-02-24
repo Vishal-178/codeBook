@@ -1,3 +1,29 @@
+<link rel="stylesheet" href="../css/header.css">
+
 <header>
-    <h3>this is header</h3>
+    <span id="app-heading">
+        <a href="/">CodeBook</a>
+    </span>
+    <ul>
+        
+        <% if (locals.user) { %>
+            <li>
+                <a href="/users/profile">
+                    <%= user.name %> 
+                </a>
+            </li>
+            <li>
+                <a href="/users/signout">Signout</a>
+            </li>
+            <% } else { %>
+             <li>
+                 <a href="/users/login">SignIn</a>
+             </li>
+             <li>
+                <a href="/users/signup">SignUp</a>
+            </li>
+
+
+        <% } %>
+    </ul>
 </header>

@@ -1,0 +1,22 @@
+footer {
+  background-color: #575757;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer p {
+  margin-left: 1rem;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  color: blue;
+}

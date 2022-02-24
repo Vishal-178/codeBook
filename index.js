@@ -7,39 +7,84 @@ const bp = require('body-parser')
 // this help to connect to data base.
 const db = require('./config/mongoose')
 
+//creating sessioin
+const session = require("express-session");
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
+
+
 // after creating schema in models folder
 // this require to see data base in robo3t or mongocompass
 const Contact = require('./models/user');
+const sassMiddleware = require('node-sass-middleware');
 
+app.use(express.static(path.join(__dirname, 'assets')));
+
+// by using express.static we can access any file of the folder directly in the project without using like ./a/b/c
+// app.use(express.static('assets'));
+app.use(sassMiddleware({
+    src:'./assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle:'expanded',
+    prefix:'/css'
+}));
 // use body parser to shaperate data in json formate when we post data from the site.
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
+
+
 // layouts after installing express-ejs-layouts
 // after installing this use layout file in views folder.
 const expressLayouts = require('express-ejs-layouts');
-app.use(expressLayouts);
+const { Cookie } = require("express-session");
 
 // extract style and scripts from sub pages into the layouts
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
+app.use(expressLayouts);
 
-// use to go the routhe folder when server call localhost:7000/
-app.use('/',require('./routes/router'));
 
 // seting view engin ejs.
 app.set('view engine', 'ejs');
-// app.set('views',path.join(__dirname,'views'));
-
-// by using express.static we can access any file of the folder directly in the project without using like ./a/b/c
-app.use(express.static("assets"));
+app.set('views',path.join(__dirname,'views'));
 
 
 
+// look for expresss section documention.
+// mongo store is used ot store the session cookie in the db
+app.use(session({
+    name: 'codeBook',
+    // TODO change the secret before deployment in production mode
+    secret:"blassomething",
+    saveUninitialized:false,
+    resave: false,
+    cookie: {
+        maxAge:(1000 * 60 * 100)
+    },
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/codeBook_development',
+        autoRemove: 'disabled'
+    })
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 
 
 
+
+
+
+
+
+// use to go the routhe folder when server call localhost:7000/
+app.use('/',require('./routes/router'));
 
 app.listen(port,(err)=>{
     if(err){
@@ -47,3 +92,6 @@ app.listen(port,(err)=>{
     }
     console.log(`Server is running fine on port: ${port}`);
 });
+
+//* Note
+// make sure all the content in this file index.js are in order.
