@@ -6,8 +6,8 @@ const connectSchema = new mongoose.Schema({
         required: true
     },
     user:{
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     post:{
         type:mongoose.Schema.Types.ObjectId,
