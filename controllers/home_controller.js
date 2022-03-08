@@ -2,7 +2,7 @@
 const Posts = require('../models/post');
 
 module.exports.home = function(req,res){
-    console.log(req.user);
+    // console.log(req.user);
     // Posts.find({user:req.user._id},function(err,posts){
         // console.log("======================");
         // console.log(posts);
