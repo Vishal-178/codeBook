@@ -2,6 +2,12 @@ body {
   margin: 0px;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 #main-body {
-  height: 82vh;
+  flex: 1 0 auto;
 }

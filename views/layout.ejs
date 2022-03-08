@@ -10,11 +10,13 @@
     <%- style %> 
 </head>
 <body>
-    <%- include('_header') %> 
-    <div id="main-body">
-        <%- body %> 
+    <div id="container">
+        <%- include('_header') %> 
+        <div id="main-body">
+            <%- body %> 
+        </div>
+        <%- include('_footer') %>
     </div>
-    <%- include('_footer') %>
     <%- script %> 
 </body>
 </html>

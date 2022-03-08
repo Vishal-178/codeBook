@@ -16,10 +16,20 @@ module.exports.home = function(req,res){
         
         // Populate the user of each post
         // read mongoose doc for populate and .exec
-        Posts.find({}).populate('user').exec(function(err,posts){
+        Posts.find({})
+        .populate('user').
+        populate({
+            path:'comment',
+            populate:{
+                path:'user'
+            }
+        }).
+        exec(function(err,posts){
+            if(err){console.log("#########---",err);return}
+            console.log(typeof(posts))
             return res.render('home',{
                 title:'Home',
-                posts:posts,
+                posts:posts
             });
         });
 
