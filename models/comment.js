@@ -17,5 +17,5 @@ const connectSchema = new mongoose.Schema({
     timestamps:true
 })
 
-const Comment = mongoose.model('Connect', connectSchema);
+const Comment = mongoose.model('Comment', connectSchema);
 module.exports = Comment;
