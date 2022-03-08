@@ -26,7 +26,7 @@ module.exports.home = function(req,res){
         }).
         exec(function(err,posts){
             if(err){console.log("#########---",err);return}
-            console.log(typeof(posts))
+
             return res.render('home',{
                 title:'Home',
                 posts:posts

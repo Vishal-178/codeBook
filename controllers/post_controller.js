@@ -1,7 +1,7 @@
 const Post = require('../models/post');
 module.exports.post = function(req,res){
-    console.log(req.body);
-    console.log(req.user);
+    // console.log(req.body);
+    // console.log(req.user);
     Post.create({
         content: req.body.post,
         user: req.user._id
