@@ -22,7 +22,7 @@ var cookies = require("cookie-parser");
 app.use(cookies());
 const sassMiddleware = require('node-sass-middleware');
 
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, '/assets')));
 
 // by using express.static we can access any file of the folder directly in the project without using like ./a/b/c
 // app.use(express.static('assets'));

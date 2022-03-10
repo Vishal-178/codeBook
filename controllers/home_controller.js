@@ -1,6 +1,6 @@
 
 const Posts = require('../models/post');
-
+const Users = require('../models/user');
 module.exports.home = function(req,res){
     // console.log(req.user);
     // Posts.find({user:req.user._id},function(err,posts){
@@ -26,11 +26,14 @@ module.exports.home = function(req,res){
         }).
         exec(function(err,posts){
             if(err){console.log("#########---",err);return}
-
-            return res.render('home',{
-                title:'Home',
-                posts:posts
+            Users.find({},function(err, users){
+                return res.render('home',{
+                    title:'Home',
+                    posts:posts,
+                    all_users : users
+                });
             });
+            
         });
 
     // });

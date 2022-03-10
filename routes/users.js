@@ -10,7 +10,7 @@ router.get('/login',userController.login);
 router.get('/signup',userController.signup);
 router.post('/create',userController.create);
 // profile page 
-router.get('/profile', passport.checkAuthentication,userController.profile);
+router.get('/profile/:id', passport.checkAuthentication,userController.profile);
 // use passport as a middleware to authenticate.
 router.post('/auth', passport.authenticate(
     'local',

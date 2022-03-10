@@ -1,8 +1,12 @@
 const user = require('../models/user');
 module.exports.profile = function(req,res){
-    return res.render('user_profile',{
-        title:"Profile Page"
-    })
+    user.findById(req.params.id, function(err, user){
+        return res.render('user_profile',{
+            title:"Profile Page",
+            profile_user: user
+        });
+    });
+    
 }
 module.exports.login = function(req,res){
     if(req.isAuthenticated()){
