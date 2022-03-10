@@ -26,6 +26,7 @@ module.exports.home = function(req,res){
         }).
         exec(function(err,posts){
             if(err){console.log("#########---",err);return}
+            // finding user and sending all user on home to display under friend section.
             Users.find({},function(err, users){
                 return res.render('home',{
                     title:'Home',
