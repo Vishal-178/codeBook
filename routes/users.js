@@ -18,5 +18,6 @@ router.post('/auth', passport.authenticate(
 ) , userController.auth);
 
 router.get('/signout',userController.signout);
+router.post('/update/:id',userController.update);
 
 module.exports = router;
