@@ -1,13 +1,7 @@
 body{
     margin: 0px;
+    height:100vh;
+    #main-body{
+      height:100%;
+    }
   }
-
-#container{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-#main-body{
-  flex: 1 0 auto;
-}

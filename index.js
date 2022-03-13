@@ -23,7 +23,25 @@ app.use(cookies());
 const sassMiddleware = require('node-sass-middleware');
 
 app.use(express.static(path.join(__dirname, '/assets')));
+const fs = require("fs");
 
+// const aaa = "./assets/css/home.css";
+
+// fs.unlink(aaa, function (err) {
+//   if (err) {
+//     console.error("--------->",err);
+//   } else {
+//     console.log("File removed:", aaa);
+//   }
+// });
+
+fs.readdir('./assets/css', function(err,files){
+    for (const file of files) {
+        fs.unlink(path.join('./assets/css', file), err => {
+          if (err) throw err;
+        });
+      }
+});
 // by using express.static we can access any file of the folder directly in the project without using like ./a/b/c
 // app.use(express.static('assets'));
 app.use(sassMiddleware({
