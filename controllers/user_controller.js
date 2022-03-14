@@ -65,7 +65,8 @@ module.exports.create = function(req,res){
 // auth or section
 //* sign in and create a section for the user.
 module.exports.auth = function(req,res){
-    // comment of this function is also avilable in other branch in github (manual-local-auth)
+    // 
+    req.flash('success', 'Logged in Scuccessfully');
     return res.redirect('/');
 }
 
@@ -73,5 +74,6 @@ module.exports.auth = function(req,res){
 // signout or destroy session
 module.exports.signout = function(req,res){
     req.logout();
+    req.flash('success', 'Logged out Scuccessfully');
     return res.redirect('/');
 }

@@ -12,8 +12,10 @@ const session = require("express-session");
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
-
-
+// use to flash message on the screen.
+const flash = require('connect-flash');
+// importing middleware from config folder it help to display notification on the screen more comment in middleware.js file.
+const custMiddleware = require('./config/middleware');
 // after creating schema in models folder
 // this require to see data base in robo3t or mongocompass
 const Contact = require('./models/user');
@@ -96,13 +98,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
-
-
-
-
-
-
-
+app.use(flash()); // read import comment.
+app.use(custMiddleware.setFlash); // read import comment.
 
 // use to go the routhe folder when server call localhost:7000/
 app.use('/',require('./routes/router'));
