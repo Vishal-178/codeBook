@@ -9,6 +9,14 @@ module.exports.post =async function(req,res){
             content: req.body.post,
             user: req.user._id
         });
+        if(req.xhr){
+            return res.status(200).json({
+                data:{
+                    post: post
+                },
+                message: "Post published!"
+            });
+        }
         console.log('post sucess');
         req.flash('success',"Post Published");
         return res.redirect('back');

@@ -3,7 +3,7 @@
     <section id="feed-posts">
         <h4>Posts</h4>
         <% if (locals.user) { %>
-        <form action="/posts/create" method="POST" new-post-form>
+        <form action="/posts/create" method="POST" id="new-post-form">
             <textarea name="post" cols="30" rows="3" placeholder="Type Here..."></textarea>
             <input type="submit" value="Post">
         </form>
@@ -25,3 +25,4 @@
         <% } %>
     </sectioin>
 </div>
+<script src="js/home_posts.js"></script>
