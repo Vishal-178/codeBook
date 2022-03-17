@@ -9,6 +9,7 @@ module.exports.post =async function(req,res){
             content: req.body.post,
             user: req.user._id
         });
+        // js/home_posts.js
         if(req.xhr){
             return res.status(200).json({
                 data:{
