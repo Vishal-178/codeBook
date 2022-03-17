@@ -37,13 +37,13 @@ const fs = require("fs");
 //   }
 // });
 
-fs.readdir('./assets/css', function(err,files){
-    for (const file of files) {
-        fs.unlink(path.join('./assets/css', file), err => {
-          if (err) throw err;
-        });
-      }
-});
+// fs.readdir('./assets/css', function(err,files){
+//     for (const file of files) {
+//         fs.unlink(path.join('./assets/css', file), err => {
+//           if (err) throw err;
+//         });
+//       }
+// });
 // by using express.static we can access any file of the folder directly in the project without using like ./a/b/c
 // app.use(express.static('assets'));
 app.use(sassMiddleware({
