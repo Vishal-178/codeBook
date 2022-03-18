@@ -8,12 +8,37 @@ module.exports.profile = function(req,res){
     });
     
 }
-module.exports.update = function(req, res){
+//! convert inot async
+module.exports.update =async function(req, res){
+    // if(req.user.id == req.params.id){
+    //     user.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+    //         return res.redirect('back');
+    //     });
+    // }else{
+    //     return res.status(401).send('Unotherised');
+    // }
     if(req.user.id == req.params.id){
-        user.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+        try {
+            let User = await user.findByIdAndUpdate(req.params.id);
+            user.uplodedAvatar(req,res,function(err){
+                if(err){console.log('****Multer Error',err);return res.redirect('back');}
+                // console.log(req.file);
+                User.name = req.body.name;
+                User.email = req.body.email;
+
+                if(req.file){
+                    // this is swing the path of the uploaded file into the avatar filed in the user.
+                    User.avatar = user.avatarPath + req.file.filename;
+                }
+                User.save();
+                return res.redirect('back');
+            });
+        } catch (err) {
+            req.flash('error',err);
             return res.redirect('back');
-        });
+        }
     }else{
+        req.flash("error", "Unauthorized");
         return res.status(401).send('Unotherised');
     }
 }
