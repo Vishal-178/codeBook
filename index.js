@@ -25,6 +25,10 @@ app.use(cookies());
 const sassMiddleware = require('node-sass-middleware');
 
 app.use(express.static(path.join(__dirname, '/assets')));
+
+// make the uplode path avilavle to the browser.
+app.use('/uplodes',express.static(__dirname+ '/uplodes'))
+
 const fs = require("fs");
 
 // const aaa = "./assets/css/home.css";

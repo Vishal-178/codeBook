@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const multer = require('multer');
 const path = require('path');
-const AVATAR_PATH = path.join('/uplodes/users/avatars');
+const AVATAR_PATH = path.join('/uplodes/users/avatars/');
 
 const creatSchema = new mongoose.Schema({
     email:{
