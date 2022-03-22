@@ -4,7 +4,7 @@ const nodeMaier = require('../config/nodemailer');
 exports.newComment = (comment)=>{
     let htmlString = nodeMaier.renderTemplate({comment:comment}, '/comments/new_comment.ejs');
     nodeMaier.transpoter.sendMail({
-        from:'',
+        from:'hr@codebook.com',
         to: comment.user.email,
         subject: "New Comment Published",
         html:htmlString
