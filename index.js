@@ -12,6 +12,9 @@ const session = require("express-session");
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportjwt = require('./config/passport-jwt-strategy');
+const googlepassport = require('./config/passport-google-oauth-strategy');
+
+
 const MongoStore = require('connect-mongo');
 // use to flash message on the screen.
 const flash = require('connect-flash');

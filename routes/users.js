@@ -20,4 +20,7 @@ router.post('/auth', passport.authenticate(
 router.get('/signout',userController.signout);
 router.post('/update/:id',userController.update);
 
+
+router.get('/auth/get/google',passport.authenticate('google',{scope:['profile','email']}));
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/users/login'}),userController.auth);
 module.exports = router;

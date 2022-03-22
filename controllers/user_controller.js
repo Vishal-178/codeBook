@@ -95,6 +95,7 @@ module.exports.create = function(req,res){
 
 // auth or section
 //* sign in and create a section for the user.
+// auth or createSection
 module.exports.auth = function(req,res){
     // 
     req.flash('success', 'Logged in Scuccessfully');
