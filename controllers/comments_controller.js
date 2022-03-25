@@ -1,6 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
-
+const commentMailer = require('../mailers/comments_mailer');
 module.exports.create =async function(req,res){
     //! adding async code changing this comment into async code.down.
     // Post.findById(req.body.post, function(err,post){
@@ -29,10 +29,15 @@ module.exports.create =async function(req,res){
             });
             post.comment.push(comment);
             post.save();
+            
+            comment = await comment.populate('user', 'name email');
+            
+            commentMailer.newComment(comment);
+            req.flash('sucess',"Comment created");
             return res.redirect('/');
         }
     } catch (err) {
-        console.log('Error While pushing comment to data base');
+        console.log('Error While pushing comment to data base',err);
         return res.end('sorry we cannot post your comment right now please try after some time.')
     }
     
