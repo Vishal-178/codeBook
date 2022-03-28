@@ -2,3 +2,5 @@
 
 /node_modules
 /.vscode
+/config/nodemailer.js
+/config/passport-google-oauth-strategy.js
